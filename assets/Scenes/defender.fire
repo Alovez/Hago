@@ -835,7 +835,7 @@
     "_atlas": null
   },
   {
-    "__type__": "beca62jHSJFJYL97qqeGI3Q",
+    "__type__": "72324VojBZI3Lo28V+oJgMI",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -928,7 +928,7 @@
     "_atlas": null
   },
   {
-    "__type__": "8793cCFI79DwLcLlRbTbv7V",
+    "__type__": "b70a1RkGk1E7YQjfetyW747",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1021,7 +1021,7 @@
     "_atlas": null
   },
   {
-    "__type__": "b0948IGsUJCn6cPkBhmUicI",
+    "__type__": "30d64oNYRJAyY3qRq0J4hS3",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1114,7 +1114,7 @@
     "_atlas": null
   },
   {
-    "__type__": "a1160Lm4RRExK6B4rxhMlNl",
+    "__type__": "1e787mCHp1LSKcDq+ecmqEU",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1207,7 +1207,7 @@
     "_atlas": null
   },
   {
-    "__type__": "1ec959u9ZZE9oZwrq5SIviD",
+    "__type__": "770d4IU69VKBYbP7D6a8yvi",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1300,7 +1300,7 @@
     "_atlas": null
   },
   {
-    "__type__": "fa360gAXyVGJYYxl0j6sSfu",
+    "__type__": "fd15a+BDPdG/Zyl4AqZJPJ4",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1393,7 +1393,7 @@
     "_atlas": null
   },
   {
-    "__type__": "3d9fcnAfWREE4nuauZqmo42",
+    "__type__": "08363BsW3xJ2o4k0q5HT3AX",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -2157,7 +2157,7 @@
     "_fitHeight": true
   },
   {
-    "__type__": "1a4dbz20F5As4xpEX8MMePs",
+    "__type__": "816a3eG9oNCkqN/La+9Z7X6",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -2185,6 +2185,8 @@
     "stop_prefab": {
       "__uuid__": "da9949ab-3171-4f8e-ac25-cea471a0aab7"
     },
-    "chessman_label": null
+    "chessman_label": {
+      "__id__": 43
+    }
   }
 ]

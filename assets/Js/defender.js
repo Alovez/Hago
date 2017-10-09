@@ -48,6 +48,16 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        this.chessman_dict = {
+            'back': '向后',
+            'kill': '杀死',
+            'left_d': '向左两格',
+            'left_s': '向左一格',
+            'right_d': '向右两格',
+            'right_s': '向右一格',
+            'stop': '停止',
+            null: '空'
+        }
         this.current_type = null
         this.current_text = '空'
         this.data_list = new Array(6)
@@ -101,6 +111,9 @@ cc.Class({
     },
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
-        this.chessman_text
+        if (this.current_text != this.current_type){
+            this.current_text = this.current_type
+            this.chessman_label.string = this.chessman_dict[this.current_text]
+        }
     },
 });
