@@ -48,6 +48,11 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        var netControl=require('NetControl');
+        netControl.connect();
+        this.msssageFire=onfire.on("onmessage",this.onMessage.bind(this));
+        
+
         this.chessman_dict = {
             'back': '向后',
             'kill': '杀死',
@@ -71,6 +76,9 @@ cc.Class({
             var scene = cc.director.getScene();
             var click_x = parseInt((event.getLocationX() - 250) / 80)
             var click_y = parseInt((event.getLocationY() - 95) / 80)
+            var jsonTmp = "{ \"Mobile\": \"" + 121212 + "\", \"Password\": \"" + 121313454545 + "\" }"; 
+            netControl.send("1010" + jsonTmp);
+            console.log("sendToWS");
             if (click_x >= 0 & click_y >= 0 & click_x <= 5 & click_y <= 5)
             {
                 if (this.data_list[click_x][click_y] == 0){
@@ -86,6 +94,10 @@ cc.Class({
                 }
             }
         }, this);
+    },
+
+    onMessage:function(obj){
+        console.log("It's HelloWorld onMessage----->"+obj);
     },
 
     getCurrentChessman: function(){
