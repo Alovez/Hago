@@ -24,11 +24,10 @@ cc.Class({
             var node = event.target.getComponent('kill_button')
             var game_node = node.node.parent.getComponent('defender')
             var c_num = parseInt(node.num_text.string)
-            if(game_node.current_type == null){
+            if(game_node.current_type == 0){
                 if(c_num > 0){
                     node.num_text.string = c_num - 1
-                    game_node.current_type = 'kill'
-                    console.log(game_node.current_type)
+                    game_node.current_type = 2
                 }
             }
        });

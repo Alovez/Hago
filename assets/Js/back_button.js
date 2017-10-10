@@ -20,18 +20,17 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        this.node.on(cc.Node.EventType.TOUCH_START, function (event) {
-            var node = event.target.getComponent('back_button')
-            var game_node = node.node.parent.getComponent('defender')
-            var c_num = parseInt(node.num_text.string)
-            if(game_node.current_type == null){
-                if(c_num > 0){
-                    node.num_text.string = c_num - 1
-                    game_node.current_type = 'back'
-                    console.log(game_node.current_type)
-                }
-            }
-       });
+        // this.node.on(cc.Node.EventType.TOUCH_START, function (event) {
+        //     var node = event.target.getComponent('back_button')
+        //     var game_node = node.node.parent.getComponent('defender')
+        //     var c_num = parseInt(node.num_text.string)
+        //     if(game_node.current_type == 0){
+        //         if(c_num > 0){
+        //             node.num_text.string = c_num - 1
+        //             game_node.current_type = 1
+        //         }
+        //     }
+    //    });
     },
 
     // called every frame, uncomment this function to activate update callback

@@ -11,6 +11,7 @@ var NetControl={
             this._sock.onopen = this._onOpen.bind(this);
             this._sock.onclose = this._onClose.bind(this);
             this._sock.onmessage = this._onMessage.bind(this);
+            this._sock.onerror = this._onError.bind(this);
         }
         return this;
     },
@@ -23,8 +24,14 @@ var NetControl={
     _onMessage:function(obj){
         onfire.fire("onmessage",obj);
     },
+    _onError:function(event){
+        onfire.fire('onerror', event);
+    },
     send:function(msg){
         this._sock.send(msg);
     },
+    getState:function(){
+        return this._sock.readyState
+    }
 };
 module.exports=NetControl;
