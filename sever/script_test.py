@@ -3,6 +3,9 @@ from sys import stdout, stdin
 import sqlite3
 import time
 
+class GameManager():
+    def defender_finished():
+        pass
 
 class DBManager():
     def check_tables(self):
