@@ -2,8 +2,7 @@
  * 当前的网络配置
  */
 module.exports={
-    host:"ws://127.0.0.1",
+    host:"ws://alovez.cc",
     port:8088,
     retry: 5
 };
-
