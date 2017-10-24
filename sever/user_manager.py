@@ -4,13 +4,16 @@ from DBManager import DBManager
 import time
 
 class User(object):
-    def __init__(self, id, name, email, passwd):
+    def __init__(self, id, name, email, passwd, tran_passwd=True):
         self.id = id
         self.name = name
         self.email = email
-        m2 = hashlib.md5()
-        m2.update(passwd)
-        self.passwd = m2.hexdigest()
+        if tran_passwd:
+            m2 = hashlib.md5()
+            m2.update(passwd.encode('utf-8'))
+            self.passwd = m2.hexdigest()
+        else:
+            self.passwd = passwd
 
 class UserManager():
     def __init__(self):
@@ -21,7 +24,7 @@ class UserManager():
         if not self.is_table_exist(conn, 'users'):
             conn.execute('''create table users
             (id            integer PRIMARY KEY autoincrement,
-            user_name      INT              NOT NULL,
+            user_name      TEXT             NOT NULL,
             email          TEXT             NOT NULL,
             passwd         TEXT             NOT NULL);''')
         conn.close()
@@ -36,10 +39,10 @@ class UserManager():
 
     def _get_user_by_id(self, id):
         conn = sqlite3.connect(self.user_db)
-        cursor = conn.execute("select user_name, email. passwd from user where id=%s" % id)
+        cursor = conn.execute("select user_name, email, passwd from users where id=%s" % id)
         user = None
         for row in cursor:
-            user = User(id, row[0], row[1], row[2])
+            user = User(id, row[0], row[1], row[2], False)
         conn.close()
         return user
 
@@ -50,8 +53,10 @@ class UserManager():
         for row in cursor:
             id = row[0]
         conn.close()
-        user = self._get_user_by_id(id)
-        return user
+        try:
+            return self._get_user_by_id(id)
+        except:
+            return None
 
     def get_user_id_by_email(self, email):
         conn = sqlite3.connect(self.user_db)
@@ -60,8 +65,10 @@ class UserManager():
         for row in cursor:
             id = row[0]
         conn.close()
-        user = self._get_user_by_id(id)
-        return user
+        try:
+            return self._get_user_by_id(id)
+        except:
+            return None
 
     def check_passwd(self, user):
         conn = sqlite3.connect(self.user_db)
@@ -78,16 +85,17 @@ class UserManager():
     def create_new_user(self, user):
         try:
             conn = sqlite3.connect(self.user_db)
-            conn.execute('insert into user value(%s, %s, %s, %s)' % (user.id, user.name, user.email, user.passwd))
+            conn.execute("insert into users values (%s, '%s', '%s', '%s')" % (user.id, user.name, user.email, user.passwd))
             conn.commit()
             conn.close()
             return 'ok'
-        except:
+        except Exception as e:
+            print(e)
             return 'error'
 
     def get_new_id(self):
         conn = sqlite3.connect(self.user_db)
-        cursor = conn.execute('select id from user order by id DESC limit 1')
+        cursor = conn.execute('select id from users order by id DESC limit 1')
         id = 0
         for row in cursor:
             id = row[0]

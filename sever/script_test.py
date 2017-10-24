@@ -53,7 +53,7 @@ while True:
                 stdout.flush()
                 continue
             new_id = um.get_new_id()
-            user = User(new_id, username, email. passwd)
+            user = User(new_id, username, email, passwd)
             print(um.create_new_user(user))
             stdout.flush()
         elif command == 'login':
@@ -65,10 +65,6 @@ while True:
             else:
                 print('User name or Password error!')
             stdout.flush()
-        
-
-
-
         else:
             print('Invalide command.')
             stdout.flush()
