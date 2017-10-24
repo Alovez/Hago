@@ -70,14 +70,14 @@ class UserManager():
         except:
             return None
 
-    def check_passwd(self, user):
+    def check_passwd(self, user, passwd):
         conn = sqlite3.connect(self.user_db)
         cursor = conn.execute("select passwd from users where id='%s'" % user.id)
-        passwd = None
+        passwd_u = None
         for row in cursor:
-            passwd = row[0]
+            passwd_u = row[0]
         conn.close()
-        if user.passwd == passwd:
+        if passwd_u == passwd:
             return True
         else:
             return False

@@ -3,6 +3,7 @@ from sys import stdout, stdin
 import time
 from DBManager import DBManager
 from user_manager import User, UserManager
+import hashlib
 
 class GameManager():
     def defender_finished():
@@ -59,13 +60,16 @@ while True:
         elif command == 'login':
             username = params[1]
             passwd = params[2]
+            m2 = hashlib.md5()
+            m2.update(passwd.encode('utf-8'))
+            passwd = m2.hexdigest()
             user = um.get_user_id_by_name(username)
             if user is None:
-                print('User name EROOR!')
-            elif um.check_passwd(user):
+                print('User name ERROR!')
+            elif um.check_passwd(user, passwd):
                 print('Pass')
             else:
-                print('User name or Password error!')
+                print('Password ERROR!')
             stdout.flush()
         else:
             print('Invalide command.')
