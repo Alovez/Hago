@@ -47,17 +47,18 @@ cc.Class({
             }
             this.netControl.connect()
         }
+        this.retry_count = 200;
     },
     callback: function (event, customEventData) {
         console.log(customEventData);
         if(customEventData == 'login'){
-            var username = this.username.String;
-            var passwd = this.password.String;
-            this.netControl.send('login&' + username + '&' + password);
-            console.log('send: ' + 'login&' + username + '&' + password)
+            var username = this.username.string;
+            var passwd = this.passwd.string;
+            this.netControl.send('login&' + username + '&' + passwd);
+            console.log('send: ' + 'login&' + username + '&' + passwd)
         }else if(customEventData == 'regist'){
             cc.director.loadScene('Regist')
-        }else if(customEventData == 'definder'){
+        }else if(customEventData == 'defender'){
             cc.director.loadScene('defender');
         }else if(customEventData == 'hacker'){
             cc.director.loadScene('hacker');
@@ -70,7 +71,7 @@ cc.Class({
            this.choose_group.getComponent(cc.Animation).play('choose');
         }else{
             console.log(obj.data);
-            this.info.String = obj.data
+            this.info.string = obj.data
         }
     },
 
@@ -80,14 +81,19 @@ cc.Class({
     },
     
     onDestroy: function(event){
-        onfire.un(this.onMessage);
-        onfire.un(this.onError)
-    }
+        onfire.un(this.msssageFire);
+        onfire.un(this.errorFire)
+    },
     
     
 
     // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
+    update: function (dt) {
+        if (this.retry_count == 0){
+            this.netControl.connect()
+            this.retry_count = 200;
+        }else{
+            this.retry_count--;
+        }
+    },
 });

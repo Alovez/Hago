@@ -47,8 +47,8 @@ cc.Class({
     },
     
     callback: function (event, customEventData) {
-        var username = this.username.String;
-        var email = this.email.String;
+        var username = this.username.string;
+        var email = this.email.string;
         var passwd = this.password.String;
         this.netControl.send('regist&' + username + '&' + email + '&' + passwd);
     },
@@ -57,7 +57,7 @@ cc.Class({
         if(obj.data == 'ok'){
             cc.director.loadScene("Login");
         }else{
-            this.info.String = obj.data
+            this.info.string = obj.data
         }
     },
 
@@ -67,8 +67,8 @@ cc.Class({
     },
     
     onDestroy: function(event){
-        onfire.un(this.onMessage);
-        onfire.un(this.onError)
+        onfire.un(this.msssageFire);
+        onfire.un(this.errorFire)
     }
 
     // called every frame, uncomment this function to activate update callback

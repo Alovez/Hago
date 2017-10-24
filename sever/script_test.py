@@ -60,7 +60,9 @@ while True:
             username = params[1]
             passwd = params[2]
             user = um.get_user_id_by_name(username)
-            if um.check_passwd(user):
+            if user is None:
+                print('User name EROOR!')
+            elif um.check_passwd(user):
                 print('Pass')
             else:
                 print('User name or Password error!')
