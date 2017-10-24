@@ -1,6 +1,7 @@
 import hashlib
 import sqlite3
 from DBManager import DBManager
+import time
 
 class User(object):
     def __init__(self, id, name, email, passwd):

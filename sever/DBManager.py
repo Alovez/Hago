@@ -1,4 +1,5 @@
 import sqlite3
+import time
 
 class DBManager():
     def check_tables(self):
