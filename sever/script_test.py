@@ -54,7 +54,8 @@ while True:
                 continue
             new_id = um.get_new_id()
             user = User(new_id, username, email. passwd)
-            um.create_new_user(user)
+            print(um.create_new_user(user))
+            stdout.flush()
         elif command == 'login':
             username = params[1]
             passwd = params[2]

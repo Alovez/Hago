@@ -75,10 +75,14 @@ class UserManager():
             return False
 
     def create_new_user(self, user):
-        conn = sqlite3.connect(self.user_db)
-        conn.execute('insert into user value(%s, %s, %s, %s)' % (user.id, user.name, user.email, user.passwd))
-        conn.commit()
-        conn.close()
+        try:
+            conn = sqlite3.connect(self.user_db)
+            conn.execute('insert into user value(%s, %s, %s, %s)' % (user.id, user.name, user.email, user.passwd))
+            conn.commit()
+            conn.close()
+            return 'ok'
+        except:
+            return 'error'
 
     def get_new_id(self):
         conn = sqlite3.connect(self.user_db)
