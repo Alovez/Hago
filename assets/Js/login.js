@@ -23,6 +23,14 @@ cc.Class({
         info: {
             default: null,
             type: cc.Label
+        },
+        login_group: {
+            default: null,
+            type: cc.Sprite
+        },
+        choose_group: {
+            default: null,
+            type: cc.Sprite
         }
     },
 
@@ -41,19 +49,27 @@ cc.Class({
         }
     },
     callback: function (event, customEventData) {
-        if(customEventData.data == 'login'){
+        console.log(customEventData);
+        if(customEventData == 'login'){
             var username = this.username.String;
             var passwd = this.password.String;
             this.netControl.send('login&' + username + '&' + password);
-        }else{
+            console.log('send: ' + 'login&' + username + '&' + password)
+        }else if(customEventData == 'regist'){
             cc.director.loadScene('Regist')
+        }else if(customEventData == 'definder'){
+            cc.director.loadScene('defender');
+        }else if(customEventData == 'hacker'){
+            cc.director.loadScene('hacker');
         }
     },
     
     onMessage:function(obj){
         if(obj.data == 'Pass'){
-            cc.director.loadScene("Login");
+           this.login_group.getComponent(cc.Animation).play('login');
+           this.choose_group.getComponent(cc.Animation).play('choose');
         }else{
+            console.log(obj.data);
             this.info.String = obj.data
         }
     },

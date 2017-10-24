@@ -18,7 +18,7 @@ class UserManager():
     def check_tables(self):
         conn = sqlite3.connect(self.user_db)
         if not self.is_table_exist(conn, 'users'):
-            conn.execute('''create table d_state 
+            conn.execute('''create table users
             (id            integer PRIMARY KEY autoincrement,
             user_name      INT              NOT NULL,
             email          TEXT             NOT NULL,

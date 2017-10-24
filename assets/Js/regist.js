@@ -43,13 +43,14 @@ cc.Class({
             }
             this.netControl.connect()
         }
+        console.log(this.netControl.getState());
     },
     
     callback: function (event, customEventData) {
         var username = this.username.String;
         var email = this.email.String;
         var passwd = this.password.String;
-        this.netControl.send('regist&' + username + '&' + email + '&' + password);
+        this.netControl.send('regist&' + username + '&' + email + '&' + passwd);
     },
     
     onMessage:function(obj){
