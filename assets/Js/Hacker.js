@@ -12,27 +12,21 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
-        username: {
+
+        movement: {
             default: null,
-            type: cc.EditBox
+            type: cc.Prefab
         },
-        email: {
+        chess: {
             default: null,
-            type: cc.EditBox
-        },
-        password: {
-            default: null,
-            type: cc.EditBox
-        },
-        info: {
-            default: null,
-            type: cc.Label
+            type: cc.Prefab
         }
+
     },
 
     // use this for initialization
     onLoad: function () {
-        this.retry_count = 200
+        this.retry_count = 200;
         this.netControl=require('NetControl');
         var netConfig=require('NetConfig');
         this.netControl.connect();
@@ -44,29 +38,17 @@ cc.Class({
             }
             this.netControl.connect()
         }
-        console.log(this.netControl.getState());
     },
-    
-    callback: function (event, customEventData) {
-        var username = this.username.string;
-        var email = this.email.string;
-        var passwd = this.password.String;
-        this.netControl.send('regist&' + username + '&' + email + '&' + passwd);
-    },
-    
+
     onMessage:function(obj){
-        if(obj.data == 'ok'){
-            cc.director.loadScene("Login");
-        }else{
-            this.info.string = obj.data
-        }
+        console.log("It's onMessage----->"+obj.data);
     },
 
     onError: function(event){
         console.log(event)
         this.netControl.connect()
-    },
-    
+    }, 
+
     onDestroy: function(event){
         onfire.un(this.msssageFire);
         onfire.un(this.errorFire)

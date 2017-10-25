@@ -80,7 +80,7 @@ cc.Class({
         for (var i = 0; i < 36; i++){
             this.data_list[i] = 0;
         }
-        this.node.on(cc.Node.EventType.MOUSE_UP, function(event){
+        this.node.on(cc.Node.EventType.TOUCH_END, function(event){
             var scene = cc.director.getScene();
             var click_x = parseInt((event.getLocationX() - 250) / 80)
             var click_y = parseInt((event.getLocationY() - 95) / 80)
@@ -136,6 +136,12 @@ cc.Class({
                 return 0
         }
     },
+
+    onDestroy: function(event){
+        onfire.un(this.msssageFire);
+        onfire.un(this.errorFire)
+    },
+    
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
         if (this.current_text != this.current_type){
