@@ -20,9 +20,20 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-
+        this.special = 1;
     },
 
+    get_pos: function() {
+        x = this.node.x / 80 + 250;
+        y = this.node.y / 80 + 95;
+        return [x, y]
+    },
+
+    set_pos: function(x, y) {
+        set_x = (x -250) / 80;
+        set_y = (y - 95) / 80;
+        this.node.setPosition(set_x, set_y);
+    }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 

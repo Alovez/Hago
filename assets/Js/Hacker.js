@@ -40,6 +40,10 @@ cc.Class({
         }
     },
 
+    chess_click: function(event, customEventData){
+        
+    },
+
     onMessage:function(obj){
         console.log("It's onMessage----->"+obj.data);
     },
