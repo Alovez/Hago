@@ -3,13 +3,11 @@
   "appSecret": "",
   "excludeScenes": [],
   "includeAnySDK": false,
-  "includeSDKBox": false,
   "includeSdk": [
     "anysdk"
   ],
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
-  "md5Cache": false,
   "mergeStartScene": false,
   "oauthLoginServer": "",
   "optimizeHotUpdate": false,
@@ -24,5 +22,5 @@
   "renderMode": "0",
   "startScene": "a87edeb6-bb08-4a67-8b2d-1a923e3d8194",
   "title": "Hago",
-  "webOrientation": "auto"
+  "webOrientation": "landscape"
 }

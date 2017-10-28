@@ -48,10 +48,14 @@ cc.Class({
     },
     
     callback: function (event, customEventData) {
-        var username = this.username.string;
-        var email = this.email.string;
-        var passwd = this.password.String;
-        this.netControl.send('regist&' + username + '&' + email + '&' + passwd);
+        if (customEventData == 'regist'){
+            var username = this.username.string;
+            var email = this.email.string;
+            var passwd = this.password.String;
+            this.netControl.send('regist&' + username + '&' + email + '&' + passwd);
+        }else{
+            cc.director.loadScene('Login')
+        }
     },
     
     onMessage:function(obj){

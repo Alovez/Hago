@@ -16,25 +16,23 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        this.skill = 1;
         this.x = 0;
         this.y = 0;
-        this.node.on(cc.Node.EventType.TOUCH_END, this.callback, this);
+        this.node.on('click', this.callback, this);
     },
 
     callback: function(event){
-        var chess_click = new cc.Event.EventCustom('chess_click', true)
-        chess_click.setUserData([this.x, this.y]);
-        this.node.dispatchEvent(chess_click);
+        var movement_event = new cc.Event.EventCustom('movement_click', true)
+        movement_event.setUserData([this.x, this.y]);
+        this.node.dispatchEvent(movement_event);
     },
 
-    set_pos: function(x, y) {
+    set_pos: function(x, y){
         this.x = x;
         this.y = y;
-        set_x = x * 80 + 290 - 480;
-        set_y = y * 80 + 135 - 320;
-        this.node.setPosition(set_x, set_y);
+        this.node.setPosition(x * 80 + 290 - 480, y * 80 + 135 - 320);
     }
+
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 

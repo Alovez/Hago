@@ -82,16 +82,17 @@ cc.Class({
         }
         this.node.on(cc.Node.EventType.TOUCH_END, function(event){
             var scene = cc.director.getScene();
+            var canvas = this.node;
             var click_x = parseInt((event.getLocationX() - 250) / 80)
             var click_y = parseInt((event.getLocationY() - 95) / 80)
             if (click_x >= 0 & click_y >= 0 & click_x <= 5 & click_y <= 5)
             {
                 if (this.data_list[click_x * 6 + click_y] == 0){
-                    var set_x = click_x * 80 + 290
-                    var set_y = click_y * 80 + 135
+                    var set_x = click_x * 80 + 290 - 480
+                    var set_y = click_y * 80 + 135 - 320
                     if(this.getCurrentChessman()){
                         var ch = cc.instantiate(this.getCurrentChessman())
-                        ch.parent = scene
+                        ch.parent = canvas
                         ch.setPosition(set_x, set_y)
                         this.data_list[click_x * 6 + click_y] = this.current_type
                         this.current_type = 0
