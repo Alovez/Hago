@@ -27,6 +27,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.special = 1;
+        this.first_round = true;
         this.movement_pool = new cc.NodePool();
         let initCount = 8;
         for (let i = 0; i < initCount; ++i) {
@@ -57,10 +58,8 @@ cc.Class({
         console.log(this.node.getChildByName('movement'));
     },
 
-    get_new_chess: function(event){
-        if (this.chess_num > 0){
-
-        }
+    next_callback: function(event, CustomerEventData){
+        this.first_round = false;
     },
 
     movement_click: function(event){
@@ -68,10 +67,15 @@ cc.Class({
         if (this.picked_chess){
             this.picked_chess.getComponent('HackerChess').set_pos(pos[0], pos[1]);
             this.picked_chess = null;
+            this.chess_num--;
         }else{
             this.add_chess(pos[0], pos[1])
         }
-        this.remove_movement();
+        if (this.first_round & this.chess_num > 3){
+            this.remove_movement(event.target);
+        }else{
+            this.remove_all_movement();
+        }
     },
 
     chess_click: function(event){
@@ -79,8 +83,8 @@ cc.Class({
         var pos = event.getUserData();
         for(let dx = -1; dx < 2; dx++){
             for (let dy = 0; dy < 2; dy++){
-                x = pos[0] + dx;
-                y = pos[1] + dy;
+                var x = pos[0] + dx;
+                var y = pos[1] + dy;
                 if (x >= 0 & x < 6){
                     if (x == pos[0] & y == pos[1]){
                         console.log('chess_pos');
@@ -105,14 +109,18 @@ cc.Class({
         let movement = null;
         if (this.movement_pool.size() > 0) {
             movement = this.movement_pool.get();
-        } else { 
-            movement = cc.instantiate(this.enemyPrefab);
+        } else {
+            movement = cc.instantiate(this.movement);
         }
         movement.parent = this.node;
         movement.getComponent('movement').set_pos(x, y);
     },
 
-    remove_movement: function(){
+    remove_movement: function(movement){
+        this.movement_pool.put(movement);
+    },
+
+    remove_all_movement: function(){
         while(this.node.getChildByName('movement')){
             this.movement_pool.put(this.node.getChildByName('movement'));
         }

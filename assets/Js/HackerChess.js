@@ -31,8 +31,8 @@ cc.Class({
     set_pos: function(x, y) {
         this.x = x;
         this.y = y;
-        set_x = x * 80 + 290 - 480;
-        set_y = y * 80 + 135 - 320;
+        var set_x = x * 80 + 290 - 480;
+        var set_y = y * 80 + 135 - 320;
         this.node.setPosition(set_x, set_y);
     }
     // called every frame, uncomment this function to activate update callback
