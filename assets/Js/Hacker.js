@@ -21,6 +21,10 @@ cc.Class({
             default: null,
             type: cc.Prefab
         },
+        chess_num_text: {
+            default: null,
+            type: cc.Label
+        },
         chess_num: 0
     },
 
@@ -28,6 +32,7 @@ cc.Class({
     onLoad: function () {
         this.special = 1;
         this.first_round = true;
+        this.round_step = 3;
         this.movement_pool = new cc.NodePool();
         let initCount = 8;
         for (let i = 0; i < initCount; ++i) {
@@ -53,6 +58,7 @@ cc.Class({
             this.netControl.connect()
         }
         this.first_init();
+        this.chess_num_text.string = this.chess_num;
         this.node.on('movement_click', this.movement_click, this);
         this.node.on('chess_click', this.chess_click, this);
         console.log(this.node.getChildByName('movement'));
@@ -60,15 +66,18 @@ cc.Class({
 
     next_callback: function(event, CustomerEventData){
         this.first_round = false;
+        this.round_step = 3;
     },
 
     movement_click: function(event){
         var pos = event.getUserData();
+        this.round_step--;
         if (this.picked_chess){
             this.picked_chess.getComponent('HackerChess').set_pos(pos[0], pos[1]);
             this.picked_chess = null;
-            this.chess_num--;
         }else{
+            this.chess_num--;
+            this.chess_num_text.string = this.chess_num;
             this.add_chess(pos[0], pos[1])
         }
         if (this.first_round & this.chess_num > 3){
@@ -79,17 +88,19 @@ cc.Class({
     },
 
     chess_click: function(event){
-        this.picked_chess = event.target;
-        var pos = event.getUserData();
-        for(let dx = -1; dx < 2; dx++){
-            for (let dy = 0; dy < 2; dy++){
-                var x = pos[0] + dx;
-                var y = pos[1] + dy;
-                if (x >= 0 & x < 6){
-                    if (x == pos[0] & y == pos[1]){
-                        console.log('chess_pos');
-                    }else{
-                        this.add_movement(x, y);
+        if (this.round_step > 0 & this.first_round == false){
+            this.picked_chess = event.target;
+            var pos = event.getUserData();
+            for(let dx = -1; dx < 2; dx++){
+                for (let dy = 0; dy < 2; dy++){
+                    var x = pos[0] + dx;
+                    var y = pos[1] + dy;
+                    if (x >= 0 & x < 6){
+                        if (x == pos[0] & y == pos[1]){
+                            console.log('chess_pos');
+                        }else{
+                            this.add_movement(x, y);
+                        }
                     }
                 }
             }
