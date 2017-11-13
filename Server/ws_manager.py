@@ -5,13 +5,19 @@ import websockets
 
 async def hello(websocket, path):
     while True:
-        name = await websocket.recv()
-        print("< {}".format(name))
-        if name == 'quit':
-            break
-        greeting = "Hello {}!".format(name)
+        url = await websocket.recv()
+        print("< {}".format(url))
+        param = url.split('&')
+        param_dict = {}
+        for param_item in param:
+            param_item.split('=')
+            param_dict[param_item[0]] = param_item[1]
+        if param.get('ctrl', False):
+            if param['ctrl'] == 'disconnect':
+                break
+            if param['ctrl'] == 'heart':
+                continue
         await websocket.send(greeting)
-        await websocket.send('second message')
         print("> {}".format(greeting))
 
 start_server = websockets.serve(hello, '127.0.0.1', 8088)
