@@ -1,5 +1,11 @@
 import sqlite3
 import settings
+from sqlalchemy import Column
+from sqlalchemy.dialects import sqlite
+from sqlalchemy.ext.declarative import declarative_base
+from db_constants import User
+
+Base = declarative_base()
 
 class DBManager(object):
     def __init__(self, *args):
@@ -16,3 +22,10 @@ class DBManager(object):
 
     def get_room_info_connction(self):
         return sqlite3.connect(self.room_info_db)
+    
+    def get_new_user_id(self):
+        
+
+    def add_user(self, username, passwd, nickname):
+        connect = self.get_user_connection()
+        sql = 'insert into UserAccounts (username, password, nickname) values ()'
