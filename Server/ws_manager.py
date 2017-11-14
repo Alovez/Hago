@@ -22,6 +22,8 @@ async def hello(websocket, path):
                 new_user = User(param['username'])
                 new_user.set_password(param['password'])
                 new_user.add_to_db()
+            if param['ctrl'] == 'login':
+                
                 
         await websocket.send(greeting)
         print("> {}".format(greeting))
