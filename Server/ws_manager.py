@@ -2,6 +2,7 @@
 
 import asyncio
 import websockets
+from user_manager import User
 
 async def hello(websocket, path):
     while True:
@@ -17,6 +18,11 @@ async def hello(websocket, path):
                 break
             if param['ctrl'] == 'heart':
                 continue
+            if param['ctrl'] == 'regist':
+                new_user = User(param['username'])
+                new_user.set_password(param['password'])
+                new_user.add_to_db()
+                
         await websocket.send(greeting)
         print("> {}".format(greeting))
 
