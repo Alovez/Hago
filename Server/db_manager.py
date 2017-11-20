@@ -7,6 +7,8 @@ from db_constants import User, Player, Room
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
+from sqlalchemy import desc
+from param_constants import RoomState
 
 Base = declarative_base()
 
@@ -35,4 +37,42 @@ class DBManager(object):
         )
         session.add(user)
         session.commit()
+        session.close()
+
+    def get_user(self, username):
+        session = self.get_session()
+        user = session.query(User.password, User.is_login).filter(User.username == username).first()
+        session.close()
+        return user
+
+    def set_session_id(self, username, session_id):
+        session = self.get_session()
+        user = session.query(User).filter(User.username == username).first()
+        user.session_id = session_id
+        session.add(user)
+        session.commit()
+        session.close()
+
+    def get_session_id(self, username):
+        session = self.get_session()
+        user = session.query(User.session_id).filter(User.username == username).first()
+        session.close()
+        return user
+
+    def get_game_id_d(self):
+        session = self.get_session()
+        room = Room(defender_data_list='', hacker_data_list='')
+        session.add(room)
+        session.commit()
+        id = session.query(Room.id).filter(Room.room_state == RoomState.Empty).order_by(desc(Room.id)).first()
+        session.close()
+        return id
+
+    def enter_room_d(self, room_id, user_id):
+        session = self.get_session()
     
+    def get_game_id_h(self):
+        session = self.get_session()
+        id = session.query(Room.id).filter(Room.room_state == RoomState.WaitingMatching).order_by(desc(Room.id)).first()
+        session.close()
+        return id
