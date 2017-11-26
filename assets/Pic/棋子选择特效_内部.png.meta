@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "412e8a38-2f5d-48eb-ae66-0f783313c1f8",
+  "uuid": "91803575-82bc-438b-a0ba-32386b4207ed",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "棋盘": {
+    "棋子选择特效_内部": {
       "ver": "1.0.3",
-      "uuid": "34a8e9eb-cc56-461e-b6d7-0306ae2ff1ce",
-      "rawTextureUuid": "412e8a38-2f5d-48eb-ae66-0f783313c1f8",
+      "uuid": "2c35561f-730d-487b-b447-f2dac5a6e5e4",
+      "rawTextureUuid": "91803575-82bc-438b-a0ba-32386b4207ed",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 480,
-      "height": 480,
-      "rawWidth": 480,
-      "rawHeight": 480,
+      "width": 500,
+      "height": 500,
+      "rawWidth": 500,
+      "rawHeight": 500,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,
