@@ -1,6 +1,7 @@
 from sqlalchemy.dialects import sqlite
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, ForeignKey
+from param_constants import RoomState
 
 Base = declarative_base()
 
@@ -16,6 +17,7 @@ class User(Base):
     avatar_path = Column(sqlite.TEXT())
     last_ip = Column(sqlite.TEXT())
     is_login = Column(sqlite.BOOLEAN())
+    session_id = Column(sqlite.TEXT())
 
 class Player(Base):
     __tablename__ = 'player_info'
@@ -39,4 +41,5 @@ class Room(Base):
     id = Column(sqlite.INTEGER(), primary_key=True)
     defender_data_list = Column(sqlite.TEXT())
     hacker_data_list = Column(sqlite.TEXT())
+    room_state = Column(sqlite.TEXT(), defalt=RoomState.Empty)
 
