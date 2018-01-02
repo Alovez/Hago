@@ -31,6 +31,10 @@ cc.Class({
         choose_group: {
             default: null,
             type: cc.Sprite
+        },
+        reconnect_group: {
+            default: null,
+            type: cc.Sprite
         }
     },
 

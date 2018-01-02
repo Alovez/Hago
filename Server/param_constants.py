@@ -5,21 +5,26 @@ class Param(Enum):
     Ctrl = 'ctrl' 
     Username = 'username'
     Password = 'password'
+    SessionId = 'session_id'
+    Reconnect = 'reconnect'
 
 @unique
 class Command(Enum):
     Disconnect = 'disconnect'
     Heart = 'heart'
-    Regist = 'regist'
+    Register = 'register'
     Login = 'login'
-    GetGameIdD = 'get_game_id_d'
-    GetGameIdH = 'get_game_id_h'
+    Logout = 'logout'
+    Reconnect = 'reconnect'
+    CreateRoom = 'get_game_id_d'
+    AddToHackerPool = 'get_game_id_h'
 
 @unique
 class Response(Enum):
     LoginPass = 'lp'
     LoginFailed = 'lf'
-    RegistSuccess = 'rs'
+    RegisterSuccess = 'rs'
+    Reconnect = 'rc'
 
 @unique
 class RoomState(Enum):

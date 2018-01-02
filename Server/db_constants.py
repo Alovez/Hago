@@ -1,7 +1,7 @@
 from sqlalchemy.dialects import sqlite
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, ForeignKey
-from param_constants import RoomState
+from Server.param_constants import RoomState
 
 Base = declarative_base()
 
@@ -32,8 +32,8 @@ class Player(Base):
     hacker_lost_count = Column(sqlite.INTEGER(), default=0)
     hacker_draw_count = Column(sqlite.INTEGER(), default=0)
     hacker_total_count = Column(sqlite.INTEGER(), default=0)
-    room_id = Column(sqlite.INTEGER, ForeignKey(column='room_info.id'))
-    room_state = Column(sqlite.TEXT) //defender, hacker, viewer
+    room_id = Column(sqlite.INTEGER, ForeignKey(column='room_info.id'), default=0)
+    room_state = Column(sqlite.TEXT, default='free')  # defender, hacker, viewer, free
 
 class Room(Base):
     __tablename__ = 'room_info'

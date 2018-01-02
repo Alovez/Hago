@@ -1,20 +1,17 @@
-import sqlite3
 import settings
-from sqlalchemy import Column
-from sqlalchemy.dialects import sqlite
 from sqlalchemy.ext.declarative import declarative_base
-from db_constants import User, Player, Room
+from Server.db_constants import User, Player, Room
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from sqlalchemy import desc
-from param_constants import RoomState
+from Server.param_constants import RoomState
 
 Base = declarative_base()
 
 class DBManager(object):
     def __init__(self, *args):
-        super(DBManager, self).__init__(*args))
+        super(DBManager, self).__init__(*args)
         self.db_name = settings.DB_NAME
     
     def get_session(self):
@@ -32,10 +29,14 @@ class DBManager(object):
             username=username, 
             password=passwd, 
             nickname=nickname, 
-            create_time=datetime.date().today()
+            create_time=datetime.date().today(),
             update_time=datetime.date().today()
         )
         session.add(user)
+        session.commit()
+        user_id = session.query(User.id).filter(User.username == username).frist()
+        player = Player(user_id=user_id)
+        session.add(player)
         session.commit()
         session.close()
 
@@ -59,11 +60,22 @@ class DBManager(object):
         session.close()
         return user
 
+    def logout(self, username):
+        session = self.get_session()
+        user = session.query(User).filter(User.username == username).first()
+        user.is_login = False
+        user.session_id = None
+        session.add(user)
+        session.commit()
+        session.close()
+
     def get_game_id_d(self):
         session = self.get_session()
         room = Room(defender_data_list='', hacker_data_list='')
         session.add(room)
         session.commit()
+        player = session.query(Player)
+
         id = session.query(Room.id).filter(Room.room_state == RoomState.Empty).order_by(desc(Room.id)).first()
         session.close()
         return id
