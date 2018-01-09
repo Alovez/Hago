@@ -1,0 +1,56 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "文字特效",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1.5,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Label": {
+        "string": [
+          {
+            "frame": 0,
+            "value": "> waiting_"
+          },
+          {
+            "frame": 0.5,
+            "value": "> waiting"
+          },
+          {
+            "frame": 1,
+            "value": "> waiting"
+          },
+          {
+            "frame": 1.5,
+            "value": "> waiting_"
+          }
+        ]
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": -0.36666666666666664,
+      "func": "",
+      "params": []
+    },
+    {
+      "frame": 0,
+      "func": "",
+      "params": []
+    },
+    {
+      "frame": 0,
+      "func": "",
+      "params": []
+    },
+    {
+      "frame": 0,
+      "func": "",
+      "params": []
+    }
+  ]
+}

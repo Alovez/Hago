@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "4d515c6d-81af-4cd3-ae8b-8a2171655a96",
+  "uuid": "d81f7822-325b-49cd-98f3-c10398f86597",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "kill": {
+    "棋盘背景": {
       "ver": "1.0.3",
-      "uuid": "250135de-e139-474b-b252-6918937527ed",
-      "rawTextureUuid": "4d515c6d-81af-4cd3-ae8b-8a2171655a96",
+      "uuid": "bc979485-5091-4681-bcfe-683135e4c346",
+      "rawTextureUuid": "d81f7822-325b-49cd-98f3-c10398f86597",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 160,
-      "height": 160,
-      "rawWidth": 160,
-      "rawHeight": 160,
+      "width": 960,
+      "height": 640,
+      "rawWidth": 960,
+      "rawHeight": 640,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,
